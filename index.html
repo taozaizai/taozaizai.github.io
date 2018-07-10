@@ -159,13 +159,96 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-快速排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-两数之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/10/两数之和/">两数之和</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/10/两数之和/" class="archive-article-date">
+  	<time datetime="2018-07-10T09:21:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-10</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: 快速排序<br>date: 2018-07-10 17:00:02<br>tags:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">void quickSortNums(int *nums, int left, int right);</span><br><span class="line"></span><br><span class="line">void logNums(int *nums, int count);</span><br><span class="line"></span><br><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">// insert code here...</span><br><span class="line"></span><br><span class="line">int nums[] = &#123;10,2,3,4,5,6,7,8,9,9,8,6,7,89,42,3&#125;;</span><br><span class="line">quickSortNums(nums, 0, 15);</span><br><span class="line">logNums(nums, 16);</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void logNums(int *nums, int count) &#123;</span><br><span class="line">for (int i=0; i&lt;count; i++) &#123;</span><br><span class="line">printf(&quot;value = %d\n&quot;,nums[i]);</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;xxxxxxxx-------xxxxxxx\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void quickSortNums(int *nums, int left, int right)</span><br><span class="line">&#123;</span><br><span class="line">//结束排序标志</span><br><span class="line">if (left &gt;= right) &#123;</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">int base = nums[left]; //参照点</span><br><span class="line">int sIndex = left;</span><br><span class="line">int eIndex = right;</span><br><span class="line">//....base...将比base小的都放左边，比base大的都放右边</span><br><span class="line"></span><br><span class="line">while (sIndex &lt; eIndex) &#123;</span><br><span class="line">//先从右开始找,如果右边的比base的小，就交换位置</span><br><span class="line">while (nums[eIndex] &gt;= base &amp;&amp; sIndex &lt; eIndex) &#123;</span><br><span class="line">eIndex --;</span><br><span class="line">&#125;</span><br><span class="line">nums[sIndex] = nums[eIndex];</span><br><span class="line">//再从左开始找,如果比base大，就交换位置</span><br><span class="line">while (nums[sIndex] &lt;= base &amp;&amp; sIndex &lt; eIndex) &#123;</span><br><span class="line">sIndex ++;</span><br><span class="line">&#125;</span><br><span class="line">nums[eIndex] = nums[sIndex];</span><br><span class="line">&#125;</span><br><span class="line">nums[sIndex] = base;</span><br><span class="line">logNums(nums, 16);</span><br><span class="line">//交换完一轮之后，对子数组再进行一轮排序</span><br><span class="line">quickSortNums(nums, left, sIndex-1);</span><br><span class="line">quickSortNums(nums, sIndex+1, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。</p>
+<p>你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。</p>
+<p>示例:</p>
+<p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]<br>
+        
+          <a class="article-more-a" href="/2018/07/10/两数之和/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/10/两数之和/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-堆排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/11/堆排序/">堆排序</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/11/堆排序/" class="archive-article-date">
+  	<time datetime="2017-07-11T09:14:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">int *num; //存储堆的数组</span><br><span class="line">int n;   //存储元素个数，即堆的大小</span><br><span class="line"></span><br><span class="line">void swap(int x, int y);</span><br><span class="line">int main(int argc, const char * argv[]);</span><br><span class="line">void createHeap(void);</span><br><span class="line">void siftDown(int i);</span><br><span class="line">void heapSort(void);</span><br><span class="line"></span><br><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">// insert code here...</span><br><span class="line">n = 10;</span><br><span class="line">int arr[] = &#123;4,6,8,5,9,6,90,78,54,100&#125;;</span><br><span class="line">num = arr;</span><br><span class="line"></span><br><span class="line">createHeap();</span><br><span class="line">for (int i=0; i&lt;10; i++) &#123;</span><br><span class="line">printf(&quot;%d &quot;,num[i]);</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;\n&quot;);</span><br><span class="line">heapSort();</span><br><span class="line">for (int i=0; i&lt;10; i++) &#123;</span><br><span class="line">printf(&quot;%d &quot;,num[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void swap(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">int t = num[x];</span><br><span class="line">num[x] = num[y];</span><br><span class="line">num[y] = t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//生成堆</span><br><span class="line">void createHeap()</span><br><span class="line">&#123;</span><br><span class="line">//从最后一一个非叶节点开始向上调整， 完全二叉树的最后一个非叶节点为n/2 - 1</span><br><span class="line">for (int i=n/2 - 1; i&gt;=0; i--) &#123;</span><br><span class="line">siftDown(i);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void heapSort() &#123;</span><br><span class="line">//每次交换堆顶数据和最后一个数据并且n--，直到n=0为止</span><br><span class="line">while (n &gt; 1) &#123;</span><br><span class="line">swap(0, n-1);</span><br><span class="line">n--;</span><br><span class="line">siftDown(0);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line">void siftDown(int i) &#123;</span><br><span class="line">int t=0, flag = 0; //flag标记需不需要继续向下调整</span><br><span class="line">//当i有至少一个儿子的时候其需要继续调整时才调整</span><br><span class="line">while (i*2 +1 &lt; n &amp;&amp; flag == 0) &#123;</span><br><span class="line">printf(&quot;xxxx\n&quot;);</span><br><span class="line">//判断它和左儿子的关系，并用t记录较大值的编号</span><br><span class="line">t = num[i] &gt; num[2*i+1] ? i : 2*i+1;</span><br><span class="line">//如果有右儿子，再对右儿子进行讨论</span><br><span class="line">if (2*i+2&lt;n) &#123;</span><br><span class="line">t = num[t] &gt; num[2*i+2] ? t : 2*i+2;</span><br><span class="line">&#125;</span><br><span class="line">if (t != i) &#123;</span><br><span class="line">swap(t, i);</span><br><span class="line">i=t;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">//当前节点不需要再继续调整了</span><br><span class="line">flag = 1;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -178,7 +261,70 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/10/快速排序/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/07/11/堆排序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-快速排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/10/快速排序/">堆排序</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/10/快速排序/" class="archive-article-date">
+  	<time datetime="2017-07-10T09:14:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">void quickSortNums(int *nums, int left, int right);</span><br><span class="line"></span><br><span class="line">void logNums(int *nums, int count);</span><br><span class="line"></span><br><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">// insert code here...</span><br><span class="line"></span><br><span class="line">int nums[] = &#123;10,2,3,4,5,6,7,8,9,9,8,6,7,89,42,3&#125;;</span><br><span class="line">quickSortNums(nums, 0, 15);</span><br><span class="line">logNums(nums, 16);</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br><span class="line">void logNums(int *nums, int count) &#123;</span><br><span class="line">for (int i=0; i&lt;count; i++) &#123;</span><br><span class="line">printf(&quot;value = %d\n&quot;,nums[i]);</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;xxxxxxxx-------xxxxxxx\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void quickSortNums(int *nums, int left, int right)</span><br><span class="line">&#123;</span><br><span class="line">//结束排序标志</span><br><span class="line">if (left &gt;= right) &#123;</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">int base = nums[left]; //参照点</span><br><span class="line">int sIndex = left;</span><br><span class="line">int eIndex = right;</span><br><span class="line">//....base...将比base小的都放左边，比base大的都放右边</span><br><span class="line"></span><br><span class="line">while (sIndex &lt; eIndex) &#123;</span><br><span class="line">//先从右开始找,如果右边的比base的小，就交换位置</span><br><span class="line">while (nums[eIndex] &gt;= base &amp;&amp; sIndex &lt; eIndex) &#123;</span><br><span class="line">eIndex --;</span><br><span class="line">&#125;</span><br><span class="line">nums[sIndex] = nums[eIndex];</span><br><span class="line">//再从左开始找,如果比base大，就交换位置</span><br><span class="line">while (nums[sIndex] &lt;= base &amp;&amp; sIndex &lt; eIndex) &#123;</span><br><span class="line">sIndex ++;</span><br><span class="line">&#125;</span><br><span class="line">nums[eIndex] = nums[sIndex];</span><br><span class="line">&#125;</span><br><span class="line">nums[sIndex] = base;</span><br><span class="line">logNums(nums, 16);</span><br><span class="line">//交换完一轮之后，对子数组再进行一轮排序</span><br><span class="line">quickSortNums(nums, left, sIndex-1);</span><br><span class="line">quickSortNums(nums, sIndex+1, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/10/快速排序/">展开全文 >></a>
         </p>
       
 
